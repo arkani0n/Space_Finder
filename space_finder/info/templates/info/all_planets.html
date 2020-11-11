@@ -1,0 +1,22 @@
+{% extends 'main/page_template.html' %}
+{% block title %} Search {% endblock %}
+
+{% block content %}
+
+{% if planets %}
+<div class="second_head">
+    <h2>All planets</h2>
+</div>
+
+{% for i in planets %}
+        <div class="search_res">
+                <a href="{% url 'planet_detail' i.id %}"><h3>{{ i.name }}</h3></a>
+                <h5>{{ i.description }}</h5>
+        </div>
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

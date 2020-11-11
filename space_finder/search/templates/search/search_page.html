@@ -1,0 +1,48 @@
+{% extends 'main/page_template.html' %}
+{% block title %} Search {% endblock %}
+
+{% block content %}
+
+
+
+<div class="second_head">
+        <form method="post"  >
+                {% csrf_token %}
+                <h4> Search</h4>
+
+                <input type="radio" id="planet" name="space_obj" value="planet">
+                        <label for="planet"> Planet </label>
+
+                         <input type="text" placeholder="Search for?" name="search_for">
+                <input type="submit" value="Find" ><br>
+
+                <input type="radio" id="star" name="space_obj" value="star">
+                        <label for="star"> Star </label><br>
+
+
+
+
+        </form>
+</div>
+
+<div class="search_results">
+{% if found %}
+{% for i in found %}
+        <div class="search_res">
+                {% if is_star %}
+                <a href="{% url 'star_detail' i.id %}"> <h3>{{ i.name }}</h3> </a>
+                {% endif %}
+
+                {% if is_planet %}
+                <a href="{% url 'planet_detail' i.id %}"><h3>{{ i.name }}</h3></a>
+                {% endif %}
+
+                <h5>{{ i.description }}</h5>
+        </div>
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

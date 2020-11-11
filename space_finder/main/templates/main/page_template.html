@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
+</head>
+<body>
+    <div class='header'>
+        <heder><img src=" /static/heder.png" alt="header_img" width="100%"></heder>
+    </div>
+    <aside>
+        <ul>
+            <a href="{% url 'main' %}"> <li> Main</li></a>
+            <a href="{% url 'search' %}"> <li> Search</li></a>
+            <a href="{% url 'history' %}"> <li> Search History</li></a>
+            <a href="{% url 'planets' %}"> <li> View all planets</li></a>
+            <a href="{% url 'stars' %}"> <li> View all stars </li></a>
+
+
+        </ul>
+    </aside>
+
+    <main>
+
+
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
