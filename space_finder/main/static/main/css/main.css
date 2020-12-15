@@ -4,8 +4,9 @@ body {
 
 aside {float: left;
         background: #140F2D;
-        height: 100vh;
+        height: 200vh;
         width: 20%}
+
 aside ul {list-style: none}
 
 aside ul li {
@@ -20,9 +21,7 @@ div.second_head{
     height: 100px;
 }
 
-div.second_head h2 {
 
-}
 
 .alert-danger{
     float: left;
@@ -60,3 +59,21 @@ div.search_div{
     width: 400px;
 }
 
+div.space_obj_div {
+    margin-left: 22%;
+    margin-top: 20px;
+    width: 800px;
+    height: auto;
+    color: #004085;
+    background-color: #cce5ff;
+}
+
+div.space_obj_div img {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+div.space_obj_div h5 {
+    margin-left: 5px;
+}

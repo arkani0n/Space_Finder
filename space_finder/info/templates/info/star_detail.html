@@ -1,0 +1,42 @@
+{% extends 'main/page_template.html' %}
+{% block title %} Search {% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="second_head">
+    <h2> {{ star.name }} </h2>
+</div>
+
+        <div class="space_obj_div">
+                <img src="{{ star.url }} " alt="star_img" width="400">
+                <h3>{{ star.name }} </h3>
+                <br>
+        <h5>{{ star.description }}</h5>
+
+                <div class="star_system"> <h4>Planets in this star system</h4>
+                {% for i in star_system %}
+
+                <a href="{% url 'planet_detail' i.id %}">
+                        <h4> {{ i.name }} </h4></a>
+
+                 {% if i == last_planet %}
+                <br>
+                        <h5>Other stars in star system:</h5>
+                        {% for j in i.star_set.all %}
+                                {% if j.id is not star.id %}
+
+                                        <a href="{% url 'star_detail' j.id %}"> <h4> {{ j.name }} </h4></a>
+                                {% endif %}
+                        {% endfor%}
+                {% endif %}
+                {% endfor %}
+                </div>
+        </div>
+</div>
+
+
+
+{% endblock %}

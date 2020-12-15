@@ -10,6 +10,7 @@ def search_page(request):
         fiend = find(request)
         return fiend
 
+
 def find(request : HttpRequest):
     req_post=request.POST
     d={
@@ -25,7 +26,7 @@ def find(request : HttpRequest):
     is_planet=0
 
     if planet_or_star=='star':
-        star=1
+        is_star=1
     elif planet_or_star=='planet':
         is_planet=1
 
