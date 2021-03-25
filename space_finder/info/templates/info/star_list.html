@@ -9,7 +9,7 @@
 
 {% for i in stars %}
         <div class="search_res">
-                <a href="{% url 'star_detail' i.id %}"> <h3>{{ i.name }}</h3> </a>
+                <a href="{{ i.get_absolute_url }}"> <h3>{{ i.name }}</h3> </a>
         <h5>{{ i.short_description }}</h5>
 
         </div>

@@ -36,14 +36,24 @@ div.main_div {
     background-color: #cce5ff;
     border-color: #b8daff;}
 
+footer{
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    color:#FDFFFC ;
+    background-color: #140F2D;
+}
 
+div.side_menu{}
 
 div.search_res{
     margin-left: 50px;
     margin-top: 20px;
     float: left;
     width: 400px;
-    height: 150px;
+    height: 170px;
     color: #004085;
     background-color: #cce5ff;
 }
@@ -71,7 +81,7 @@ div.space_obj_div {
 div.space_obj_div img {
     float: left;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 div.space_obj_div h5 {

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 class Planet(models.Model):
     name = models.CharField('name the planet', max_length=50)
     description = models.TextField('Description of the planet')
@@ -8,6 +8,9 @@ class Planet(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('planet_detail',kwargs={'pk':self.id})
 
 
 class Star(models.Model):
@@ -19,3 +22,6 @@ class Star(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('star_detail',kwargs={'pk':self.id})

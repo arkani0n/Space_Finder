@@ -9,5 +9,6 @@ urlpatterns = [
     path('/planet/<int:pk>',
          views.PlanetDetailView.as_view(), name='planet_detail'),
     path('/star/<int:pk>',
-         views.StarDetailView.as_view(), name='star_detail')
+         views.StarDetailView.as_view(), name='star_detail'),
+    path('',views.CreateView.as_view())
 ]

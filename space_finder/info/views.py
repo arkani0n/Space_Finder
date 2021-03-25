@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import RedirectView,DetailView,ListView
+from django.views.generic import RedirectView,DetailView,ListView,CreateView
 from main.models import *
 # Create your views here.
 from main.models import *
@@ -37,17 +37,11 @@ def star(request,pk):
     }
     return render(request,'info/star_detail.html', contex)
 
-class StarListView(ListView):
-    model = Star
-    template_name = 'info/star_list.html'
-    context_object_name = 'stars'
-
 
 class PlanetListView(ListView):
     model = Planet
     template_name = 'info/planet_list.html'
     context_object_name = 'planets'
-
 
 class PlanetDetailView(DetailView):
     model = Planet
@@ -55,12 +49,17 @@ class PlanetDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         contex=super().get_context_data(**kwargs)
-        planet_id=self.kwargs['pk']
-        planet=Planet.objects.get(id=planet_id)
-        star_system = planet.star_set.all()
+        star_system = self.object.star_set.all()
         contex['star_system']=star_system
         contex['last_star']= list(star_system)[-1]
         return contex
+
+
+class StarListView(ListView):
+    model = Star
+    context_object_name = 'stars'
+    template_name = 'info/star_list.html'
+
 
 class StarDetailView(DetailView):
     model = Star
@@ -68,9 +67,12 @@ class StarDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         contex=super().get_context_data(**kwargs)
-        star_id=self.kwargs['pk']
-        star=Star.objects.get(id=star_id)
-        star_system = star.star_system.all()
+        star_system = self.object.star_system.all()
         contex['star_system']=star_system
         contex['last_planet']=list(star_system)[-1]
         return contex
+
+class Create(CreateView):
+    model = Planet
+    template_name = 'info/planet_form'
+    queryset = Planet.objects.all()

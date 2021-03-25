@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from main.models import *
-import re
 from django.http import HttpRequest
-# Create your views here.
+
+
 def search_page(request):
     if request.method=='GET':
         return render(request,'search/search_page.html', {'found': None})
@@ -19,16 +19,15 @@ def find(request : HttpRequest):
     }
     planet_or_star = req_post.get('space_obj',None)
 
-    if planet_or_star!= ('planet' or'star'):
+    if planet_or_star != 'star' and  planet_or_star !='planet':
         return redirect('search')
 
-    is_star=0
-    is_planet=0
-
-    if planet_or_star=='star':
-        is_star=1
+    elif planet_or_star=='star':
+        is_star = 1
+        is_planet = 0
     elif planet_or_star=='planet':
-        is_planet=1
+        is_star = 0
+        is_planet = 1
 
     all_obj=d[planet_or_star]
 

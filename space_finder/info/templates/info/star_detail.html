@@ -4,39 +4,50 @@
 {% block content %}
 
 
-
-
 <div class="second_head">
     <h2> {{ star.name }} </h2>
 </div>
 
-        <div class="space_obj_div">
-                <img src="{{ star.url }} " alt="star_img" width="400">
-                <h3>{{ star.name }} </h3>
+<div class="space_obj_div">
+    <h2>Star {{ star.name }} </h2>
+    <table>
+        <tr>
+
+    <th><img src="{{ star.url }} " alt="star_img" width="400"></th>
+
+
+    <th><h5>{{ star.description }}</h5></th>
+    </tr>
+        <br>
+        <tr>
+    <th><h4>Planets in this star system</h4></th>
+        <th><h4>Other stars in star system:</h4></th>
+            </tr>
+        <br>
+        <tr>
+            <th>
+        {% for planet in star_system %}
+
+        <a href="{{ planet.get_absolute_url }}">
+            <h4> {{ planet.name }} </h4></a>
+
+        {% if planet == last_planet %}
+        </th>
                 <br>
-        <h5>{{ star.description }}</h5>
+        <th>
+        {% for star_i in planet.star_set.all %}
+        {% if star_i.id is not star.id %}
 
-                <div class="star_system"> <h4>Planets in this star system</h4>
-                {% for i in star_system %}
-
-                <a href="{% url 'planet_detail' i.id %}">
-                        <h4> {{ i.name }} </h4></a>
-
-                 {% if i == last_planet %}
-                <br>
-                        <h5>Other stars in star system:</h5>
-                        {% for j in i.star_set.all %}
-                                {% if j.id is not star.id %}
-
-                                        <a href="{% url 'star_detail' j.id %}"> <h4> {{ j.name }} </h4></a>
-                                {% endif %}
-                        {% endfor%}
-                {% endif %}
-                {% endfor %}
-                </div>
-        </div>
+        <a href="{{ star_i.get_absolute_url }}"><h4> {{ star_i.name }} </h4></a>
+        {% endif %}
+        {% endfor%}
+            </th>
+        {% endif %}
+        {% endfor %}
+        </table>
+    </div>
 </div>
-
+</div>
 
 
 {% endblock %}

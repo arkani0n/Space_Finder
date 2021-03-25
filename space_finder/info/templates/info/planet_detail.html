@@ -4,37 +4,52 @@
 {% block content %}
 
 <div class="second_head">
+    <h2>Planet {{ planet.name }} </h2>
+</div>
+<div class="space_obj_div">
     <h2> {{ planet.name }} </h2>
+    <table>
+        <tr>
+
+            <th><img src="{{ planet.url }} " alt="planet_img" width="400"></th>
+            <th><h5>{{ planet.description }}</h5></th>
+        </tr>
+        <br>
+        <tr>
+
+                <th>
+                    <h4>Stars of this star system:</h4>
+                </th>
+                <th>
+                    <h4>Other planets in star system:</h4>
+                </th>
+        </tr>
+        <br>
+
+
+        <th>{% for star in star_system %}
+
+            <a href="{{ star.get_absolute_url }}"><h4> {{ star.name }} </h4></a>
+
+            {% if star == last_star %}
+        </th>
+        <th>
+
+            {% for planet_i in star.star_system.all %}
+            {% if planet_i.id is not planet.id %}
+            <a href="{{ planet_i.get_absolute_url }}"><h4> {{ planet_i.name }} </h4></a>
+            {% endif %}
+            {% endfor%}
+        </th>
+        {% endif %}
+
+        {% endfor %}
+        </tr>
+
+    </table>
 </div>
-        <div class="space_obj_div">
-
-                <img src="{{ planet.url }} " alt="planet_img" width="400">
-                <h5>{{ planet.description }}</h5>
-                <br>
-                <div class="star_system">
-                <h6>Stars of this star system:</h6>
-                <br>
-                {% for i in star_system %}
-
-                <a href="{% url 'star_detail' i.id %}"> <h6> {{ i.name }} </h6></a>
-
-                {% if i == last_star %}
-                <br>
-                        <h6>Other planets in star system:</h6>
-                        {% for j in i.star_system.all %}
-                                {% if j.id is not planet.id %}
-                                        <a href="{% url 'planet_detail' j.id %}"> <h4> {{ j.name }} </h4></a>
-                                {% endif %}
-                        {% endfor%}
-                {% endif %}
-
-                {% endfor %}
-                </div>
-
-
-        </div>
 </div>
-
+</div>
 
 
 {% endblock %}
